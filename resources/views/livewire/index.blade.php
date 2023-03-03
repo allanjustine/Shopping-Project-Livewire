@@ -59,16 +59,26 @@
                     <h5 class="alert alert-success text-success text-center">{{ session('message') }}</h5>
                 @endif
             </h3>
-            <select name="status" class="form-control" wire:model.lazy="status">
-                <option value="All">All</option>
-                <option value="Pending">Pending</option>
-                <option value="To Deliver">To Deliver</option>
-                <option value="Delivered">Delivered</option>
-                <option value="Ongoing">Ongoing</option>
-                <option value="To Pay">To Pay</option>
-            </select>
-            <input type="text" class="form-control mt-2" placeholder="Search" wire:model="search">
-            <a href="/create" class="btn btn-primary d-flex justify-content-end float-end mt-2 mb-1">Add Data</a>
+            <div class="row">
+                <div class="col-sm-4">
+                    <select name="status" class="form-control" wire:model.lazy="status">
+                        <option value="All">All</option>
+                        <option value="Pending">Pending</option>
+                        <option value="To Deliver">To Deliver</option>
+                        <option value="Delivered">Delivered</option>
+                        <option value="Ongoing">Ongoing</option>
+                        <option value="To Pay">To Pay</option>
+                    </select>
+                </div>
+
+            <div class="col-sm-4">
+                <input type="text" class="form-control" placeholder="Search" wire:model="search">
+
+            </div>
+            <div class="col-sm-4">
+                <a href="/create" class="btn btn-primary d-flex justify-content-end float-end mt-2 mb-1">Add Data</a>
+            </div>
+            </div>
             <table class="table tbl-striped tbl-hovered">
                 <thead class="bg-info">
                     <tr>
@@ -101,6 +111,13 @@
                         <td colspan="6" class="text-center">No {{ $search }} data found.</td>
                     @endif
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="2" class="text-end"><h5>Total Price & Stock: </h5></td>
+                        <td><i><h6>{{ $total }}</h6></i></td>
+                        <td></td>
+                    </tr>
+                </tfoot>
             </table>
             {{ $shoppings->links() }}
         </div>

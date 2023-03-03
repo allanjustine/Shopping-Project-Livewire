@@ -36,8 +36,13 @@ class Index extends Component
         Shopping::find($this->shoppingDelete)->delete();
         return redirect('/shopping')->with('message', 'ID # ' . $this->shoppingDelete . ' is now deleted to list.');
     }
+    public function total() {
+        $total = Shopping::sum('price');
+
+        return compact('total');
+    }
     public function render()
     {
-        return view('livewire.index', $this->loadShopping());
+        return view('livewire.index', $this->loadShopping(), $this->total());
     }
 }

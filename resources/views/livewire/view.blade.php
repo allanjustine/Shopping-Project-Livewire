@@ -11,6 +11,7 @@
                     <li>Mobile Number: {{ $shopping->mobile_number }}</li>
                     <li>Quantity: {{ $shopping->quantity }}</li>
                     <li>Price: {{ $shopping->price }}</li>
+                    <li><h6>Total Ammount: {{ $shopping->price * $shopping->quantity }}</h6></li>
                 </ul>
                 <a href="/shopping">Back to shoppings</a>
             </div>
