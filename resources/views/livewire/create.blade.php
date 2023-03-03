@@ -44,9 +44,9 @@
                 @enderror
             </div>
             <div class="form-floating mb-3">
-                <input type="number" class="form-control" id="recipient-name" wire:model.defer="quantity"
+                <input type="range" min="1" max="100" step="1" class="form-control" id="recipient-name" wire:model.defer="quantity"
                     required="">
-                <label for="quantity">Quantity</label>
+                <label for="quantity">Quantity: <span id="quantity-value"></span></label>
                 @error('quantity')
                     <p class="text-danger">{{ $message }}</p>
                 @enderror
@@ -84,3 +84,12 @@
         </div>
     </div>
 </div>
+
+<script>
+    const priceInput = document.querySelector('input[type="range"]');
+    const priceValue = document.querySelector('#quantity-value');
+
+    priceInput.addEventListener('input', () => {
+        priceValue.textContent = `${priceInput.value}`;
+    });
+</script>
