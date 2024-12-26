@@ -46,9 +46,13 @@
 
                     </div>
                 @endforeach
-                @if ($shoppings->count() === 0)
+                @if (!empty($search) && $shoppings->count() === 0 )
                     <div class="grid-item">
-                        <h4 class="text-center mt-5">No {{ $search }} data found.</h4>
+                        <h4 class="text-center mt-5">"{{ $search }}" search not found.</h4>
+                    </div>
+                @elseif($shoppings->count() === 0)
+                    <div class="grid-item">
+                        <h4 class="text-center mt-5">No data found.</h4>
                     </div>
                 @endif
             </div>
@@ -61,7 +65,7 @@
             </h3>
             <div class="row">
                 <div class="col-sm-4">
-                    <select name="status" class="form-control" wire:model.lazy="status">
+                    <select name="status" class="form-control" wire:model="status">
                         <option value="All">All</option>
                         <option value="Pending">Pending</option>
                         <option value="To Deliver">To Deliver</option>
@@ -72,7 +76,7 @@
                 </div>
 
             <div class="col-sm-4">
-                <input type="text" class="form-control" placeholder="Search" wire:model="search">
+                <input type="text" class="form-control" placeholder="Search" wire:model.lazy="search">
 
             </div>
             <div class="col-sm-4">
@@ -107,8 +111,10 @@
                             </td>
                         </tr>
                     @endforeach
-                    @if ($shoppings->count() === 0)
-                        <td colspan="6" class="text-center">No {{ $search }} data found.</td>
+                    @if (!empty($search) && $shoppings->count() === 0)
+                        <td colspan="6" class="text-center">"{{ $search }}" search not found.</td>
+                    @elseif($shoppings->count() === 0)
+                        <td colspan="6" class="text-center">No data found.</td>
                     @endif
                 </tbody>
                 <tfoot>
